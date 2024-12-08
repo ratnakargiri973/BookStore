@@ -1,8 +1,10 @@
+import { cloudinaryUploader } from '../Middleware/Cloudinary.js';
 import Books from '../Model/BookSchema.js';
 import mongoose from 'mongoose';
 
 export const AddBook = (async (req, res) => {
     try {
+        const result = await cloudinaryUploader(req.file.buffer);
         const {title, author, price, description, publisher} = req.body;
 
         const bookToAdd = new Books({
@@ -10,13 +12,14 @@ export const AddBook = (async (req, res) => {
             author,
             price,
             description,
-            publisher
+            publisher,
+            image: result.secure_url
         });
 
         await bookToAdd.save();
         res.status(201).send({message: "Book added sucessfully"});
     } catch (error) {
-        res.status(500).send({error: err});
+        res.status(500).send({error: error});
     }
 });
 
