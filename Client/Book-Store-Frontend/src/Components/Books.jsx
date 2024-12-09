@@ -6,7 +6,7 @@ function Books({ books }) {
     <>
       <section id='books' className='flex items-center flex-col gap-8'>
         <h2 className='font-bold text-5xl'>Our Collections</h2>
-        <div className="books-wrapper flex justify-around items-start gap-8">
+        <div className="books-wrapper flex justify-center items-center gap-8 flex-wrap">
           {books.map((book) => (
             <div className="book flex flex-col justify-center items-center gap-2" key={book._id}>
               {book.image && (

@@ -3,13 +3,15 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import 'dotenv/config';
 import BookRouter from './Routes/BookRoutes.js';
+import userRouter from './Routes/userRoutes.js';
 
 const app = express();
-app.use(cors({origin: "http://localhost:5174"}));
+app.use(cors({origin: "http://localhost:5173"}));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 app.use('/api', BookRouter);
+app.use('/api', userRouter);
 
 
 mongoose.connect(process.env.MONGO_URL, {dbName:process.env.DB})
