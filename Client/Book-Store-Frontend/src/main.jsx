@@ -6,6 +6,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './Home.jsx'
 import AddBook from './Pages/AddBook.jsx'
 import Book from './Pages/Book.jsx'
+import Login from './Pages/Login.jsx'
+import Register from './Pages/Register.jsx'
+import VerifyEmail from './Pages/VerifyEmail.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,18 @@ const router = createBrowserRouter([
       {
         path: '/book/:id',
         element: <Book />
+      },
+      {
+        path: '/login',
+        element: <Login />
+      },
+      {
+        path: '/register',
+        element: <Register />
+      },
+      {
+        path: '/verify-email',
+        element: <VerifyEmail />
       }
     ]
   }

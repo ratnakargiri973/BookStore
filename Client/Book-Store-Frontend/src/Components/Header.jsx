@@ -9,9 +9,9 @@ function Header() {
         <ul>
             <li className='flex justify-center align-center gap-3'>
             <Link to="/" className='hover:text-gray-300'>Home</Link>
-            <Link to="" className='hover:text-gray-300'>Contact</Link>
-            <Link to="" className='hover:text-gray-300'>Log In</Link>
-            <Link to="" className='hover:text-gray-300'>Sign Up</Link>
+            <Link to="" className='hover:text-gray-300'>Contact Us</Link>
+            <Link to="/login" className='hover:text-gray-300'>Log In</Link>
+            <Link to="/register" className='hover:text-gray-300'>Sign Up</Link>
             </li>
         </ul>
     </header>
