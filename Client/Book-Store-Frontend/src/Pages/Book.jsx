@@ -1,4 +1,4 @@
-import axios from 'axios';
+import instance from '../axiosConfig.js';
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ function Book() {
   }, [id]);
 
   async function fetchData(idToFetch) {
-    const response = await axios.get("http://localhost:8080/api/get/book/" + idToFetch);
+    const response = await instance.get("api/get/book/" + idToFetch);
     setBook(response.data);
   }
 

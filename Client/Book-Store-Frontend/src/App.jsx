@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
+import instance from './axiosConfig.js';
 import Books from './Components/Books';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   fetchData();
  }, []);
   async function fetchData(){
-    const response = await axios.get("http://localhost:8080/api/get/book");
+    const response = await instance.get("api/get/book");
     // console.log(response.data);
     setBooks(response.data);
   }

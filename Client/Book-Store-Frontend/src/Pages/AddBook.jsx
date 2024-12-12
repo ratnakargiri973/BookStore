@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import instance from '../axiosConfig.js';
 
 function AddBook() {
     const [formData, setFormData] = useState({
@@ -33,7 +34,7 @@ function AddBook() {
       frm.append("image", formData.image);
 
       try {
-        const response = await axios.post("http://localhost:8080/api/add/book", frm);
+        const response = await instance.post("api/add/book", frm);
         if (response.status === 201) setSuccessMsg(true);
     } catch (error) {
         console.error('Error adding book:', error);

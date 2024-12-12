@@ -1,4 +1,4 @@
-import axios from 'axios';
+import instance from '../axiosConfig.js';
 import React, { useState } from 'react'
 
 function Login() {
@@ -20,7 +20,7 @@ function Login() {
     try {
       const formData = new FormData(e.target);
       const finalData = Object.fromEntries(formData.entries());
-      const response = await axios.post('http://localhost:8080/api/login/user', finalData);
+      const response = await instance.post('api/login/user', finalData);
   
       if(response.status === 200){
         setMessage(response.data.message);

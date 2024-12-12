@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import bcrypt from 'bcrypt';
 import { sendVerificationEmail } from "../Middleware/verification.js";
 import 'dotenv/config'
+import jwt from 'jsonwebtoken'
 
 export const register = async (req, res) => {
     const {name, username, email, phone} = req.body;
@@ -59,7 +60,25 @@ export const login = async (req, res) => {
             return res.status(401).send({message: "Incorrect credentials"});
         }
 
-        return res.status(200).send({message: "User has logged in successfully"});
+        const token = jwt.sign(
+        {
+           userId: user._id,
+           username: user.username,
+        },
+        process.env.JWT_SECRET,
+        {
+            expiresIn: "24h",
+        }
+     );
+
+       res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 24 * 60 * 60 * 1000,
+       });
+
+    return res.status(200).send({message: "User has logged in successfully"});
 
 
     } catch (error) {

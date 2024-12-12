@@ -1,4 +1,4 @@
-import axios from 'axios';
+import instance from '../axiosConfig.js';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ function VerifyEmail() {
     }
 
     async function sendTokenToBackend(){
-        const response = await axios.post("http://localhost:8080/api/auth/verify-token", {
+        const response = await instance.post("api/auth/verify-token", {
             token: token,
         });
 

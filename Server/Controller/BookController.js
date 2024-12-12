@@ -25,10 +25,36 @@ export const AddBook = (async (req, res) => {
 
 export const getAllBooks = ( async (req, res) =>{
     try {
-        const allBooks = await Books.find();
+        let query = {}; 
+
+
+        if(req.query.author) {
+            query.author = { $regex: new RegExp(req.query.author, "i") };
+        }
+       
+        if(req.query.publisher) {
+            query.publisher = { $regex: new RegExp(req.query.publisher, "i") };
+        }
+
+        if(req.query.title) {
+            query.title = { $regex: new RegExp(req.query.title, "i") };
+        }
+
+        if(req.query.minPrice && req.query.maxPrice){
+            query.price = {
+                $gte: req.query.minPrice,
+                $lte: req.query.maxPrice,
+            };
+        }
+
+        const page = req.query.page ? parseInt(req.query.page) : 1;
+        const limit = 4;
+        const skip = (page - 1) * limit;
+
+        const allBooks = await Books.find(query).skip(skip).limit(limit);
         res.send(allBooks);
     } catch (error) {
-        res.status(500).send({error: err});
+        res.status(500).send({error: error});
     }
 });
 

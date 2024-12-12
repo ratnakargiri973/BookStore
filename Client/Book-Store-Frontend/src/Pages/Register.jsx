@@ -1,4 +1,4 @@
-import axios from 'axios';
+import instance from '../axiosConfig.js';
 import React, { useState } from 'react'
 
 function Register() {
@@ -25,7 +25,7 @@ function Register() {
       const formData = new FormData(e.target);
       const finalData = Object.fromEntries(formData.entries());
 
-      const response = await axios.post('http://localhost:8080/api/add/user', finalData);
+      const response = await instance.post('api/add/user', finalData);
       console.log(response);
       if(response.status === 201) setMessage(response.data.message  + ". Check your for a confirmation link");
     } catch (error) {
