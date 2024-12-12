@@ -9,6 +9,7 @@ import Book from './Pages/Book.jsx'
 import Login from './Pages/Login.jsx'
 import Register from './Pages/Register.jsx'
 import VerifyEmail from './Pages/VerifyEmail.jsx'
+import AddBlog from './Pages/AddBlog.jsx'
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: '/verify-email',
         element: <VerifyEmail />
+      },
+      {
+        path: '/add-blog',
+        element: <AddBlog />
       }
     ]
   }

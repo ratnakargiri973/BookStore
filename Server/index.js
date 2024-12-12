@@ -5,6 +5,7 @@ import 'dotenv/config';
 import BookRouter from './Routes/BookRoutes.js';
 import userRouter from './Routes/userRoutes.js';
 import authRouter from './Routes/authRoutes.js';
+import blogRouter from './Routes/blogsRoutes.js';
 
 const app = express();
 app.use(cors({origin: "http://localhost:5173"}));
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api', BookRouter);
 app.use('/api', userRouter);
 app.use('/api', authRouter);
+app.use('/api', blogRouter);
 
 
 mongoose.connect(process.env.MONGO_URL, {dbName:process.env.DB})

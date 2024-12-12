@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import instance from '../axiosConfig.js';
 
 function AddBook() {
@@ -45,7 +44,7 @@ function AddBook() {
     <>
       {successMsg && <h3>Book Added Successfully</h3>}
       <h2>Add a book</h2>
-      <form action="" ncType="multipart/form-data" onSubmit={handleSubmit}>
+      <form action="" encType="multipart/form-data" onSubmit={handleSubmit}>
         <input 
            type="text" 
            name="title"
